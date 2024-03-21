@@ -1,0 +1,33 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Embeddable Demo</title>
+
+    <script>
+      (function () {
+        var rcs = document.createElement("script");
+        rcs.src =
+          "https://apps.ringcentral.com/integration/ringcentral-embeddable/latest/adapter.js?clientId=AMuP4FByG3DeVR8gUFa1sR&appServer=https://platform.devtest.ringcentral.com&redirectUri=https://apps.ringcentral.com/integration/ringcentral-embeddable/latest/redirect.html&stylesUri=https://embbnux.github.io/ringcentral-web-widget-styles/GameofThrones/styles.css";
+        var rcs0 = document.getElementsByTagName("script")[0];
+        rcs0.parentNode.insertBefore(rcs, rcs0);
+
+        const requestId = Date.now().toString();
+        document
+          .querySelector("#rc-widget-adapter-frame")
+          .contentWindow.postMessage(
+            {
+              type: "rc-adapter-message-request",
+              requestId: requestId,
+              path: "/custom-alert-message",
+              alertMessage: "Test info message",
+              alertLevel: "info",
+              ttl: 5000, //5000ms => 5s
+            },
+            "*"
+          );
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
